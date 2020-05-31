@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:mung_flutter/bloc/theme_bloc.dart';
 import 'package:mung_flutter/data/net/http_base.dart';
 import 'package:mung_flutter/data/net/http_movie.dart';
 import 'package:mung_flutter/model/hot_model.dart';
@@ -13,7 +12,6 @@ import 'package:mung_flutter/widget/loading_footer_widget.dart';
 import 'package:mung_flutter/widget/loading_widget.dart';
 import 'package:mung_flutter/data/const/constant.dart';
 
-// ThemeProvider要独立出来，刷新会产生闪屏
 class MainPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -21,6 +19,8 @@ class MainPage extends StatefulWidget {
   }
 }
 
+// note: 一般StatefulWidget使用State直接以 XXState命名即可,
+// 如 MainPageState, 类名前加 "_" 相当于 java的private, 但范围略大一点, 仅在一个文件内是可见
 class _MainState extends State<MainPage> {
 
   bool _scrollRefreshing = false;
@@ -84,15 +84,15 @@ class _MainState extends State<MainPage> {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primaryColor: Color(ThemeProvider.of(context).themeColor), // 主题色
+          primaryColor: Colors.green,
           scaffoldBackgroundColor: WColors.color_f5
         ),
         home: Builder(
             builder: (context) {
               return Scaffold(
                 appBar: AppBar(
-                  leading: BaseStyle.getIconFontButton(
-                      0xeaec, () => RouteUtil.routeToThemePage(context)),
+//                  leading: BaseStyle.getIconFontButton(
+//                      0xeaec, () => RouteUtil.routeToThemePage(context)),
                   title: Text("Mung", style: BaseStyle.textStyleWhite(18),),
                   centerTitle: true,
                   actions: <Widget>[ BaseStyle.getIconFontButton(0xeafe, () => RouteUtil.routeToSearchPage(context))],
@@ -128,7 +128,6 @@ class _MainState extends State<MainPage> {
 
   @override
   void dispose() {
-    ThemeProvider.of(context).dispose();
     _scrollController.dispose();
     super.dispose();
   }

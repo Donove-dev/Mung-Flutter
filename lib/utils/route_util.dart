@@ -1,22 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mung_flutter/pages/detail_page.dart';
-import 'package:mung_flutter/pages/theme_page.dart';
 import 'package:mung_flutter/pages/photo_detail_page.dart';
 import 'package:mung_flutter/pages/list_page.dart';
 import 'package:mung_flutter/pages/search_page.dart';
 
 class RouteUtil {
-
-  static void routeToThemePage(BuildContext context) {
-    Navigator.of(context).push(
-        MaterialPageRoute(
-            builder: (context){
-              return ThemePage();
-            }
-        )
-    );
-  }
-
   static void routeToDetailPage(BuildContext context,String id) {
     Navigator.of(context).push(
         MaterialPageRoute(

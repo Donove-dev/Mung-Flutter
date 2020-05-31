@@ -56,6 +56,7 @@ class LoadingWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           SpinKitPouringHourglass(
+            duration: Duration(seconds: 2),
             color: Theme.of(context).primaryColor,
             size: 40,
           ),
